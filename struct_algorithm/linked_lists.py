@@ -1,45 +1,68 @@
-#LinkedList 구현하기. 테스트
-
 class Node:
+
     def __init__(self, item):
         self.data = item
-        self.next =None
+        self.next = None
+
 
 class LinkedList:
+
     def __init__(self):
         self.nodeCount = 0
-        self.head = None
+        self.head = Node(None)
         self.tail = None
+        self.head.next = self.tail
 
-    def getAt(self, pos): # 특정 순서 원소 뽑기
-        if pos < 1 or pos > self.nodeCount:
+    def traverse(self):
+        result = []
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+            result.append(curr.data)
+        return result
+
+    def getAt(self, pos):
+        if pos < 0 or pos > self.nodeCount:
             return None
-        i = 1
+
+        i = 0
         curr = self.head
         while i < pos:
             curr = curr.next
             i += 1
+
         return curr
 
-    def traverse(self): #전체 내용 뽑기
-        answer = []
-        if self.nodeCount == 0:
-            return []
+    def insertAfter(self, prev, newNode):
+        newNode.next = prev.next
+        if prev.next is None:
+            self.tail = newNode
+        prev.next = newNode
+        self.nodeCount += 1
+        return True
 
-        curr = self.head
-        answer.append(curr.data)
+    def insertAt(self, pos, newNode):
+        if pos < 1 or pos > self.nodeCount + 1:
+            return False
 
-        while curr.next:
-            curr = curr.next
-            answer.append(curr.data)
+        if pos != 1 and pos == self.nodeCount + 1:
+            prev = self.tail
+        else:
+            prev = self.getAt(pos - 1)
+        return self.insertAfter(prev, newNode)
 
-        # 다른 사람 풀이
-        # l = []
-        # node = self.head
-        # while node != None:
-        #     l.append(node.data)
-        #     node = node.next
-        # return l
+    def popAfter(self, prev):
+        if prev.next == None:
+            return None
+        curr = prev.next
 
+        if curr.next == None:
+            self.tail = prev
+        prev.next = curr.next
+        self.nodeCount -= 1
+        return curr.data
 
-        return answer
+    def popAt(self, pos):
+        if pos < 1 or pos > self.nodeCount:
+            raise IndexError
+        return self.popAfter(self.getAt(pos - 1))
