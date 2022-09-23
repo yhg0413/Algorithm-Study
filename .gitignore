@@ -2,5 +2,6 @@
 .env
 .pyc
 __pycache__/
-__idea__/
 venv/
+.idea/misc.xml
+.idea/Algorithm-Study.iml
