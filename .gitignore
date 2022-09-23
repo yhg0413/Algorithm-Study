@@ -2,6 +2,5 @@
 .env
 .pyc
 __pycache__/
-.idea/
-media/
+__idea__/
 venv/
