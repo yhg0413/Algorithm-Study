@@ -3,5 +3,4 @@
 .pyc
 __pycache__/
 venv/
-.idea/misc.xml
-.idea/Algorithm-Study.iml
+.idea/
