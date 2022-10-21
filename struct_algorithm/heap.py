@@ -49,6 +49,17 @@ class MaxHeap:
             # 현재 노듸 (i)와 최댓값 노드 (smallest)의 값 바꾸기
             # 재귀적으로 maxHeapify 호출
 
+#힙 정렬 (heap sort)의 코드 구현
+def heapsort(unsorted):
+    H = MaxHeap()
+    for item in unsorted:
+        H.insert(item)
+    sorted_list = []
+    d = H.remove()
+    while d:
+        sorted_list.append(d)
+        d = H.remove()
+    return sorted_list
 
 if __name__ == '__main__':
     max_heap = MaxHeap()
