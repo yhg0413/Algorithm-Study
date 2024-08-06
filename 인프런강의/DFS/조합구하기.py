@@ -5,9 +5,8 @@
 """
 
 
-
 # 중복 처리되는 부분이 있어서 제거하는 로직이 있으면 좋을 것 같다.
-def DFS(l,s):
+def DFS(l, s):
     global res
     global cnt
     if l == m:
@@ -17,7 +16,7 @@ def DFS(l,s):
     else:
         for i in range(s, n + 1):
             res[l] = i
-            DFS(l+1,i+1)
+            DFS(l + 1, i + 1)
 
 
 if __name__ == '__main__':
@@ -26,5 +25,5 @@ if __name__ == '__main__':
     ch = [0] * n
     res = [0] * m
     cnt = 0
-    DFS(0,1)
+    DFS(0, 1)
     print(cnt)
